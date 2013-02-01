@@ -249,7 +249,7 @@ PHP_FUNCTION(couchbase_delete_design_doc);
 #define PCBC_INIDEFL_COMPTHRESH "2000"
 
 #define PCBC_INIENT_DEFAULT_TIMEOUT "couchbase.default_timeout"
-#define PCBC_INIDEFL_DEFAULT_TIMEOUT "2500000"
+#define PCBC_INIDEFL_DEFAULT_TIMEOUT "2500000" /* from libcouchbase-2.0.2/src/internal.h #define LCB_DEFAULT_TIMEOUT 2500000 */
 
 /**
  * Hash table manipulation functions.
