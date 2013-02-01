@@ -1462,6 +1462,10 @@ STD_PHP_INI_ENTRY(PCBC_INIENT_OBS_TIMEOUT, PCBC_INIDEFL_OBS_TIMEOUT,
 STD_PHP_INI_ENTRY(PCBC_INIENT_VIEW_TIMEOUT, PCBC_INIDEFL_VIEW_TIMEOUT,
 				  PHP_INI_ALL, OnUpdateLong, view_timeout,
 				  zend_couchbase_globals, couchbase_globals)
+
+STD_PHP_INI_ENTRY(PCBC_INIENT_DEFAULT_TIMEOUT, PCBC_INIDEFL_DEFAULT_TIMEOUT,
+				  PHP_INI_ALL, OnUpdateLong, default_timeout,
+				  zend_couchbase_globals, couchbase_globals)  /* also units of microseconds, 2.5M = 2.5sec */
 PHP_INI_END()
 /* }}} */
 

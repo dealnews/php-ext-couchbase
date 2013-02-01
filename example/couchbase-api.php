@@ -159,8 +159,9 @@ class Couchbase {
      *                       the cluster
      * @param string $bucket The name of the bucket to connect to
      * @param boolean $persistent If a persistent object should be used or not
+     * @param unsigned int $default_timeout Override the default timeout with this value in usecs
      */
-    function __construct($hosts = array("localhost"), $user = "", $password = "", $bucket = "default", $persistent = false) {
+    function __construct($hosts = array("localhost"), $user = "", $password = "", $bucket = "default", $persistent = false, $default_timeout = 2500000) {
 
     }
 

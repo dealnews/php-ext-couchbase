@@ -124,6 +124,7 @@ double compression_factor;
 long durability_default_poll_interval;
 long durability_default_timeout;
 long view_timeout;
+long default_timeout;
 ZEND_END_MODULE_GLOBALS(couchbase)
 
 PHP_GINIT_FUNCTION(couchbase);
@@ -246,6 +247,9 @@ PHP_FUNCTION(couchbase_delete_design_doc);
 
 #define PCBC_INIENT_COMPTHRESH "couchbase.compression_threshold"
 #define PCBC_INIDEFL_COMPTHRESH "2000"
+
+#define PCBC_INIENT_DEFAULT_TIMEOUT "couchbase.default_timeout"
+#define PCBC_INIDEFL_DEFAULT_TIMEOUT "2500000"
 
 /**
  * Hash table manipulation functions.

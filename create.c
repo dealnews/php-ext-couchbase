@@ -153,6 +153,7 @@ void php_couchbase_create_impl(INTERNAL_FUNCTION_PARAMETERS, int oo) /* {{{ */
 {
 	char *user = NULL, *passwd = NULL, *bucket = NULL;
 	int user_len = 0, passwd_len = 0, bucket_len = 0;
+	long default_timeout = INI_INT(PCBC_INIENT_DEFAULT_TIMEOUT);
 	zend_bool persistent = 0;
 	zval *zvhosts = NULL;
 	struct connparams_st cparams = { NULL };
@@ -166,12 +167,12 @@ void php_couchbase_create_impl(INTERNAL_FUNCTION_PARAMETERS, int oo) /* {{{ */
 
 	memset(&cparams, 0, sizeof(cparams));
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|zsssb",
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|zsssbl",
 							  &zvhosts,
 							  &user, &user_len,
 							  &passwd, &passwd_len,
 							  &bucket, &bucket_len,
-							  &persistent) == FAILURE) {
+							  &persistent, &default_timeout) == FAILURE) {
 		return;
 	}
 
@@ -184,6 +185,9 @@ void php_couchbase_create_impl(INTERNAL_FUNCTION_PARAMETERS, int oo) /* {{{ */
 		}
 		if (passwd_len) {
 			cparams.password = passwd;
+		}
+		if (default_timeout <= 0) {
+			default_timeout = 2500000;
 		}
 	}
 	if (zvhosts == NULL) {
@@ -273,6 +277,8 @@ create_new_link:
 			return;
 		}
 
+
+		lcb_set_timeout(handle,(lcb_uint32_t)default_timeout);
 
 		retval = lcb_connect(handle);
 
